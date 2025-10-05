@@ -1,0 +1,14 @@
+@import 'tailwindcss';
+
+* {
+  box-sizing: border-box;
+  user-select: none;
+}
+
+body, #root {
+  width: 100dvw;
+  height: 100dvh;
+  overflow: hidden;
+
+  background-color: #212121;
+}

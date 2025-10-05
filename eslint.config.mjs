@@ -37,6 +37,8 @@ export default defineConfig(
       // 4. Punto y coma obligatorio
       semi: ['error', 'always'],
 
+      'react/display-name': 'off',
+
       ...eslintPluginReactHooks.configs.recommended.rules,
       ...eslintPluginReactRefresh.configs.vite.rules,
     },
