@@ -15,8 +15,8 @@ export class Bot {
     this.embedding_model = embedding_model;
 
     this.ollama = new Ollama(
-      path.resolve(assets_folder, 'info-folder'),
-      path.resolve(assets_folder, 'info-folder'),
+      path.resolve(assets_folder, 'info-data'),
+      path.resolve(assets_folder, 'info-data'),
       this.model,
       this.embedding_model,
       path.resolve(assets_folder, 'prompt.system.txt'),

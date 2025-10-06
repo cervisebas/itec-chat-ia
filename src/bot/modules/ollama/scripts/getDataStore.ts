@@ -1,4 +1,4 @@
-import mime from 'mime';
+import * as mime from 'mime';
 import path from 'path';
 import fs from 'fs';
 
@@ -9,7 +9,9 @@ export async function getDataStore(folder: string): Promise<string> {
     return '';
   }
 
-  const dir = fs.readdirSync(folder_path, { withFileTypes: true });
+  const dir = fs.readdirSync(folder_path, {
+    withFileTypes: true,
+  });
   const files: string[] = [];
 
   for (const file of dir) {

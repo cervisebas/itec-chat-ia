@@ -3,7 +3,7 @@ import { electronAPI } from '@electron-toolkit/preload';
 import { Observable } from 'rxjs';
 
 // Custom APIs for renderer
-const api = {
+export const api = {
   async botAsk(prompt: string): Promise<Observable<string>> {
     return new Observable<string>((subscribe) => {
       ipcRenderer.invoke('bot.ask', prompt);
