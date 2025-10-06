@@ -4,6 +4,7 @@ import { electronApp, optimizer, is } from '@electron-toolkit/utils';
 import icon from '../../resources/icon.png?asset';
 import { Bot } from '@bot/index';
 import { BotConfig } from './constants/BotConfig';
+import './constants/Logger';
 
 const bot = new Bot(BotConfig.model, BotConfig.embedding_model);
 

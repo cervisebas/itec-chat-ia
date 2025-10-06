@@ -1,9 +1,8 @@
-import * as mime from 'mime';
 import path from 'path';
 import fs from 'fs';
 
-export async function getDataStore(folder: string): Promise<string> {
-  const folder_path = folder;
+export async function getDataStore(folder_path: string): Promise<string> {
+  console.log(folder_path);
 
   if (!fs.existsSync(folder_path)) {
     return '';
@@ -15,10 +14,11 @@ export async function getDataStore(folder: string): Promise<string> {
   const files: string[] = [];
 
   for (const file of dir) {
-    const isTextPlain = mime.getType(file.name) === 'text/plain';
+    const isTextPlain = file.name.includes('.txt');
+    console.log(`Scan -> ${file.name} - ${isTextPlain ? 'yes' : 'no'}`);
 
     if (file.isFile() && isTextPlain) {
-      files.push(path.resolve(file.parentPath, file.name));
+      files.push(path.resolve(folder_path, file.name));
     }
   }
 
