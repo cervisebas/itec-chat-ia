@@ -27,8 +27,8 @@ export class OllamaInstanceVectors {
   private async createVectors(): Promise<void> {
     // ##### Data Vector #####
     const splitter = new CharacterTextSplitter({
-      chunkSize: 1536,
-      chunkOverlap: 200,
+      chunkSize: 2250,
+      chunkOverlap: 100,
     });
 
     const docs = await splitter.createDocuments([this.dataStore]);

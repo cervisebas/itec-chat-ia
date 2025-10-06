@@ -15,6 +15,7 @@ export const ChatUI = React.memo(function (props: IProps) {
 
   return (
     <div
+      id="chat-ui"
       className={
         'flex justify-center overflow-y-scroll flex-1 min-h-0 size-full py-3'
       }

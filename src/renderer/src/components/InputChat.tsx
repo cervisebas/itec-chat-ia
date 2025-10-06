@@ -16,8 +16,10 @@ export const InputChat = React.memo(function (props: IProps) {
   }, []);
 
   const onClickSend = function (): void {
-    props.send?.(value);
-    setValue('');
+    if (!props.loading) {
+      props.send?.(value);
+      setValue('');
+    }
   };
 
   const onEnter = function (event: React.KeyboardEvent<HTMLInputElement>) {
