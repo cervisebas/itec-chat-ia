@@ -2,6 +2,10 @@ import { app, shell, BrowserWindow, ipcMain } from 'electron';
 import { join } from 'path';
 import { electronApp, optimizer, is } from '@electron-toolkit/utils';
 import icon from '../../resources/icon.png?asset';
+import { Bot } from '@bot/index';
+import { BotConfig } from './constants/BotConfig';
+
+const bot = new Bot(BotConfig.model, BotConfig.embedding_model);
 
 function createWindow(): void {
   // Create the browser window.
@@ -17,8 +21,14 @@ function createWindow(): void {
     },
   });
 
-  mainWindow.on('ready-to-show', () => {
-    mainWindow.show();
+  mainWindow.on('ready-to-show', async () => {
+    try {
+      await bot.init();
+      mainWindow.show();
+    } catch (error) {
+      console.error(error);
+      process.exit(1);
+    }
   });
 
   mainWindow.webContents.setWindowOpenHandler((details) => {
@@ -51,6 +61,26 @@ app.whenReady().then(() => {
 
   // IPC test
   ipcMain.on('ping', () => console.log('pong'));
+
+  // IPC Dialog
+  ipcMain.handle(
+    'bot.ask',
+    (event: Electron.IpcMainInvokeEvent, prompt: string) => {
+      console.log(prompt);
+      bot.ask(prompt).subscribe({
+        next(value) {
+          event.sender.send('bot.ask:stream', value);
+        },
+        error(err) {
+          console.error(err);
+          event.sender.send('bot.ask:error', err);
+        },
+        complete() {
+          event.sender.send('bot.ask:complete');
+        },
+      });
+    },
+  );
 
   createWindow();
 

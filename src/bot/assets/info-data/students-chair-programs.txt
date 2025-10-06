@@ -1,0 +1,8 @@
+**Programas de Cátedra**
+
+Esta sección permite acceder a los Programas de Cátedra estructurados por año lectivo. Al seleccionar un determinado ciclo académico, el usuario será redirigido a una carpeta en Google Drive donde pueden realizar búsquedas específicas por tecnicatura y año en curso. Todos los documentos están disponibles en formato PDF para su descarga o impresión según las necesidades.
+
+**Referencia general**: [https://www.isft194.edu.ar/pages/../pages/programascatedra.html](https://www.isft194.edu.ar/pages/../pages/programascatedra.html)
+
+**Programas del año académico 2025**  
+Los documentos correspondientes al ciclo lectivo 2025 se encuentran en la siguiente carpeta de Google Drive: [https://drive.google.com/drive/folders/1rRMXRdfxZVkjj-tQVSnOyuciownHJbpJ?usp=sharing](https://drive.google.com/drive/folders/1rRMXRdfxZVkjj-tQVSnOyuciownHJbpJ?usp=sharing)

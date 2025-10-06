@@ -38,6 +38,7 @@ export default defineConfig(
       semi: ['error', 'always'],
 
       'react/display-name': 'off',
+      '@typescript-eslint/explicit-function-return-type': 'off',
 
       ...eslintPluginReactHooks.configs.recommended.rules,
       ...eslintPluginReactRefresh.configs.vite.rules,

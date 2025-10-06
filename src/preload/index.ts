@@ -1,8 +1,32 @@
-import { contextBridge } from 'electron';
+import { contextBridge, ipcRenderer } from 'electron';
 import { electronAPI } from '@electron-toolkit/preload';
+import { Observable } from 'rxjs';
 
 // Custom APIs for renderer
-const api = {};
+const api = {
+  async botAsk(prompt: string): Promise<Observable<string>> {
+    return new Observable<string>((subscribe) => {
+      ipcRenderer.invoke('bot.ask', prompt);
+
+      const messageEvent = ipcRenderer.on(
+        'bot.ask:stream',
+        (_event, args: string) => {
+          subscribe.next(args);
+        },
+      );
+
+      ipcRenderer.once('bot.ask:error', (_event, [error]) => {
+        messageEvent.removeAllListeners();
+        subscribe.error(error);
+      });
+
+      ipcRenderer.once('bot.ask:complete', () => {
+        messageEvent.removeAllListeners();
+        subscribe.complete();
+      });
+    });
+  },
+};
 
 // Use `contextBridge` APIs to expose Electron APIs to
 // renderer only if context isolation is enabled, otherwise
